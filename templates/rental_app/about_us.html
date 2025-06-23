@@ -1,0 +1,733 @@
+<!-- rental_app/templates/rental_app/about_us.html -->
+{% extends 'base.html' %}
+
+{% block title %}關於我們{% endblock %}
+
+{% block content %}
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <img src="https://images.pexels.com/photos/414781/pexels-photo-414781.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1200"
+            alt="攝影團隊" class="hero-image"
+            onerror="this.onerror=null;this.src='https://placehold.co/1200x500/e0e0e0/333333?text=關於我們';">
+        <div class="hero-text">
+            <h1 class="fade-in-delay-1">我們的故事：熱情與專業的結合</h1>
+            <p class="fade-in-delay-1">為您提供最佳的攝影器材租賃體驗</p>
+        </div>
+    </div>
+
+    <div class="about-content">
+        <h2 class="section-trigger" data-target="intro-content" style="margin-top: 0;">深入了解相機租約中心</h2>
+        <div id="intro-content" class="content-wrapper">
+            <div class="info-block left-align">
+                <h3><span class="icon">✨</span> 歡迎來到相機租約中心</h3>
+                <p>我們深信，每一位熱愛攝影的人都應該擁有體驗高品質器材的機會。</p>
+                <p>在這裡，攝影不再是高昂的投資，而是觸手可及的樂趣。</p>
+            </div>
+
+            <div class="info-block right-align">
+                <h3><span class="icon">📸</span> 我們的精選設備</h3>
+                <p>我們庫存中的每一台相機、每一個鏡頭，都經過嚴格篩選與細緻維護。</p>
+                <p>讓您無憂無慮專注於創作，品質與性能由我們把關。</p>
+            </div>
+
+            <div class="info-block left-align">
+                <h3><span class="icon">📝</span> 本店特色與理念</h3>
+                {# 僅保留「興趣經營」和「聊聊交友」的內容 #}
+                <p>如果說當今手機拍攝的素質是60分的話，您想要取得80-90分的專業相機素質，又不想要花大錢（您考慮以小搏大）想先嘗試，歡迎來本店洽詢，未出租前均不收取任何諮詢費用！</p>
+                <p class="mb-0">因純興趣經營（不確定能經營下去多久），如果您對其他領域：比如中醫理論、中藥材、食材營養學、身心靈促進健康等等領域有興趣的人，也可以單純交交朋友聊聊研究。</p>
+                {# 移除所有關於「交易方式」、「計價方法」、「押金規則」、「適合對象」、「建議」、「注意事項」的內容 #}
+            </div>
+        </div>
+
+        {# 我們的核心價值 #}
+        <h3 class="section-trigger" data-target="values-content">我們的核心價值</h3> {# 移除 <span class="arrow">▼</span> #}
+        <div id="values-content" class="content-wrapper">
+            <div class="values-grid">
+                <div class="value-item">
+                    <span class="value-icon">🥇</span>
+                    <h4>優質設備</h4>
+                    <p>我們提供業界領先的攝影器材，確保性能卓越，助您作品更上一層樓。</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🗓️</span>
+                    <h4>彈性租賃</h4>
+                    <p>多樣化的租期選擇與便捷的預訂流程，滿足您的短期或長期需求。</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🤝</span>
+                    <h4>專業支援</h4>
+                    <p>我們的攝影專家團隊隨時準備為您提供諮詢與技術協助。</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">💡</span>
+                    <h4>創新體驗</h4>
+                    <p>不斷引入新技術與服務，提升您的每一次租賃體驗。</p>
+                </div>
+            </div>
+        </div>
+
+        {# 我們的旅程時間軸 #}
+        <h3 class="section-trigger" data-target="journey-content">我們的旅程</h3> {# 移除 <span class="arrow">▼</span> #}
+        <div id="journey-content" class="content-wrapper">
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2018 - 啟程：熱情萌芽</h4>
+                        <p>相機租約中心由一群對攝影充滿熱情的創辦人成立，旨在降低攝影器材的入門門檻。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2020 - 成長：服務擴展</h4>
+                        <p>隨著用戶需求增長，我們引入了更多品牌和型號的相機，並優化了線上租賃流程。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2022 - 創新：智能升級</h4>
+                        <p>整合智能客戶服務系統，提供更快速、精準的諮詢服務。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2024 - 未來：持續探索</h4>
+                        <p>我們將持續探索最新科技與設備，為攝影愛好者提供更多可能性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# 我們的團隊 #}
+        <h3 class="section-trigger" data-target="team-content">我們的團隊</h3> {# 移除 <span class="arrow">▼</span> #}
+        <div id="team-content" class="content-wrapper">
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="團隊成員 A" class="team-photo" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/333333?text=A';">
+                    <h4>陳經理</h4>
+                    <p class="role">營運經理</p>
+                    <p class="bio">擁有十年租賃行業經驗，確保流程順暢高效。</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="團隊成員 B" class="team-photo" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/333333?text=B';">
+                    <h4>林攝影師</h4>
+                    <p class="role">攝影顧問</p>
+                    <p class="bio">資深攝影師，為您提供專業器材選擇建議。</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="團隊成員 C" class="team-photo" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/333333?text=C';">
+                    <h4>張技術員</h4>
+                    <p class="role">設備維護</p>
+                    <p class="bio">確保每台設備都經過嚴格檢測與校準，性能優良。</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p style="font-size: 1.2em; font-weight: 500; color: #333;">有任何疑問？請隨時聯繫我們！</p>
+                <p>電子郵件: <a href="mailto:garraypierce@gmail.com" class="btn-link">garraypierce@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTopBtn" title="返回頂部">⬆️</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            const sectionTriggers = document.querySelectorAll('.section-trigger');
+            
+            // Function to reveal a section
+            const revealSection = (targetId, triggerElement) => {
+                const targetContent = document.getElementById(targetId);
+                if (targetContent && !targetContent.classList.contains('is-revealed')) {
+                    targetContent.classList.add('is-revealed');
+                    // 由於箭頭已移除，這裡不再需要 active class 來旋轉箭頭
+                    // if (triggerElement) {
+                    //     triggerElement.classList.add('active');
+                    // }
+                }
+            };
+
+            // Event Listeners for section triggers (mouseenter and click)
+            sectionTriggers.forEach(trigger => {
+                const targetId = trigger.dataset.target;
+
+                // On mouse enter, reveal the section
+                trigger.addEventListener('mouseenter', () => {
+                    revealSection(targetId, trigger);
+                });
+
+                // On click, also reveal the section (for touch devices or explicit click)
+                trigger.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior if any
+                    revealSection(targetId, trigger);
+                });
+            });
+
+            // Back to top button logic
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <style>
+        /* 新增全域 box-sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Hero Section (首圖區塊) */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+            transition: transform 0.5s ease-out;
+        }
+        .hero-section:hover .hero-image {
+            transform: scale(1.03);
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+        .hero-text {
+            position: absolute;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            max-width: 80%;
+        }
+        .hero-text h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 0;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        /* About Content Sections (關於內容區塊) */
+        .about-content {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #444;
+            max-width: 880px; /* 960px (container max-width) - 2*40px (container padding) */
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+        .about-content p {
+            margin-bottom: 1.5em;
+        }
+        .about-content strong {
+            color: #333;
+        }
+
+        /* 可折疊內容區塊的標題 */
+        .section-trigger {
+            cursor: pointer;
+            text-align: center;
+            color: #333333;
+            margin-top: 60px; /* 控制區塊間距 */
+            margin-bottom: 20px; /* 標題與內容的間距 */
+            font-size: 2.2em;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 移除 gap，因為沒有箭頭了 */
+        }
+        .section-trigger:first-of-type {
+            margin-top: 0; /* 第一個標題不需要頂部間距 */
+        }
+        .section-trigger:hover {
+            color: #5a7d9b; /* 懸停時顏色變化 */
+        }
+        /* 移除 .section-trigger .arrow 及其相關樣式 */
+        /* .section-trigger .arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.8em;
+            transform: rotate(0deg);
+        }
+        .section-trigger.active .arrow {
+            transform: rotate(180deg);
+        } */
+
+        /* 可折疊內容區塊的包裹器 */
+        .content-wrapper {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            /* 調整動畫速度至 1.2s */
+            transition: max-height 1.2s ease-in-out, opacity 1.2s ease-in-out, padding 1.2s ease-in-out;
+            padding-top: 0; /* 預設無頂部內邊距 */
+        }
+        .content-wrapper.is-revealed {
+            max-height: 2000px; /* 足夠大的值以顯示所有內容 */
+            opacity: 1;
+            overflow: visible; /* 允許內容溢出，但通常 max-height 已經足夠 */
+            padding-top: 40px; /* 內容顯示時的頂部內邊距 */
+        }
+
+        /* info-block (與 content-wrapper 的 is-revealed 配合使用) */
+        .info-block {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+            margin-bottom: 20px; /* 區塊內部間距 */
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-block:last-of-type {
+            margin-bottom: 0; /* 最後一個 info-block 移除底部間距 */
+        }
+        .info-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(90,125,155,0.05) 0%, rgba(90,125,155,0.01) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+            border-radius: 12px;
+        }
+        .info-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .info-block:hover::before {
+            opacity: 1;
+        }
+        .info-block h3 {
+            font-size: 2em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .info-block .icon {
+            font-size: 1.2em;
+            color: #5a7d9b;
+        }
+        .info-block p {
+            position: relative;
+            z-index: 1;
+        }
+        .info-block.left-align {
+            text-align: left;
+        }
+        .info-block.right-align {
+            text-align: right;
+        }
+        .info-block.right-align .icon {
+            order: 1;
+            margin-left: 10px;
+        }
+        .info-block.right-align h3 {
+             justify-content: flex-end;
+        }
+
+        /* Values Grid (核心價值網格) */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 0px; /* 由 content-wrapper padding-top 控制 */
+            margin-bottom: 20px; /* 網格底部間距 */
+        }
+        .value-item {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(90,125,155,0.05) 0%, rgba(90,125,155,0.01) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+            border-radius: 12px;
+        }
+        .value-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .value-item:hover::before {
+            opacity: 1;
+        }
+        .value-item .value-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+            position: relative; z-index: 1;
+        }
+        .value-item h4 {
+            font-size: 1.4em;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            position: relative; z-index: 1;
+        }
+        .value-item p {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.6;
+            position: relative; z-index: 1;
+        }
+
+        /* Timeline Section (時間軸區塊) */
+        .timeline-container {
+            position: relative;
+            max-width: 800px; /* 保持這個寬度，讓內容在其內部對齊 */
+            margin: 0 auto; /* 由 content-wrapper padding-top 控制 */
+            padding: 20px 0;
+        }
+        .timeline-container::after { /* 時間軸線 */
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #e0e0e0;
+            top: 0;
+            bottom: 0;
+            left: 50%; /* 垂直居中 */
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            padding: 10px 0; /* 移除 timeline-item 本身的左右 padding */
+            position: relative;
+            background-color: inherit;
+            width: 50%; /* 每個項目佔容器寬度的一半 */
+            box-sizing: border-box; /* 確保 padding 不影響寬度計算 */
+            /* 移除 opacity, transform, transition，這些由 content-wrapper 處理 */
+        }
+
+        .timeline-item:nth-child(odd) { /* 奇數項靠左 */
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) { /* 偶數項靠右 */
+            left: 50%;
+            text-align: left;
+        }
+        .timeline-dot {
+            padding: 8px;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #5a7d9b;
+            border-radius: 50%;
+            top: 25px;
+            z-index: 1;
+            box-shadow: 0 0 0 3px rgba(90,125,155,0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+        .timeline-item:hover .timeline-dot {
+            background-color: #4b6a8a;
+            transform: scale(1.1);
+        }
+        .timeline-content {
+            padding: 20px 25px; /* 內容本身的內邊距，提供內容與邊界間的緩衝 */
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            border: 1px solid #eee;
+            position: relative;
+            /* 移除 opacity, transition，這些由 content-wrapper 處理 */
+        }
+        /* 調整內容與中心線的距離，這裡使用 margin */
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto; /* 將內容塊推向其父級 (50% 寬度) 的右側 */
+            margin-right: 30px; /* 控制內容塊與中心線的距離 */
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto; /* 將內容塊推向其父級 (50% 寬度) 的左側 */
+            margin-left: 30px; /* 控制內容塊與中心線的距離 */
+        }
+
+        .timeline-content h4 {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .timeline-content p {
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        /* Team Section (團隊區塊) */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 0; /* 由 content-wrapper padding-top 控制 */
+            margin-bottom: 20px; /* 網格底部間距 */
+        }
+        .team-member {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            border: 4px solid #5a7d9b;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: border-color 0.3s ease;
+        }
+        .team-member:hover .team-photo {
+            border-color: #4b6a8a;
+        }
+        .team-member h4 {
+            font-size: 1.4em;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .team-member .role {
+            font-size: 0.95em;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .team-member .bio {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+            min-height: auto; /* 移除固定最小高度 */
+        }
+
+        /* Contact Info (聯絡資訊) */
+        .contact-info {
+            background-color: #fcfcfc;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eeeeee;
+            margin-top: 20px; /* 距離上方 team-grid 的間距 */
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 滾動動畫通用樣式 (現在由 content-wrapper 控制顯示) */
+        /* .fade-in, .fade-in-section classes are effectively replaced by .content-wrapper.is-revealed */
+        .fade-in { /* Keep for hero section elements if needed */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 {
+            transition-delay: 0.5s;
+        }
+
+        /* 返回頂部按鈕 */
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #5a7d9b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #backToTopBtn:hover {
+            background-color: #4b6a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5em;
+            }
+            .hero-text p {
+                font-size: 1.2em;
+            }
+            .info-block, .value-item {
+                padding: 30px;
+            }
+            .info-block h3 {
+                font-size: 1.8em;
+                justify-content: center;
+            }
+            .info-block.right-align .icon {
+                order: unset;
+                margin-left: 0;
+                margin-right: 10px;
+            }
+            .info-block.right-align h3 {
+                justify-content: center;
+            }
+            .about-content {
+                padding: 0 15px 40px;
+                max-width: 100%; /* 在小螢幕上確保內容滿寬度 */
+            }
+            .section-trigger {
+                font-size: 1.8em; /* 調整小螢幕下標題字體 */
+                margin-top: 40px; /* 調整小螢幕下標題間距 */
+            }
+            .content-wrapper.is-revealed {
+                padding-top: 20px; /* 小螢幕下內容頂部間距可以小一點 */
+            }
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-container::after {
+                left: 20px; /* 時間軸線靠左 */
+            }
+            .timeline-item {
+                width: 100%; /* 時間軸項目佔滿寬度 */
+                padding: 10px 0; /* 繼續保持無左右 padding */
+                left: 0 !important; /* 強制靠左 */
+                text-align: left !important; /* 強制左對齊 */
+            }
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 12px; /* 點靠左對齊 */
+                right: auto;
+            }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 45px; /* 統一靠左，與時間軸線距離 */
+                margin-right: 0; /* 移除右側 margin */
+            }
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 20px;
+            }
+            .team-member .bio {
+                min-height: auto;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 350px;
+            }
+            .hero-text h1 {
+                font-size: 1.8em;
+            }
+            .hero-text p {
+                font-size: 1em;
+            }
+            .info-block h3 {
+                font-size: 1.5em;
+            }
+            .value-item .value-icon {
+                font-size: 2.5em;
+            }
+            .value-item h4 {
+                font-size: 1.2em;
+            }
+            .section-trigger {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+{% endblock %}
