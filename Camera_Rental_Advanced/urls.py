@@ -20,5 +20,14 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('rental_app.urls')), # 包含 rental_app 的 URL
-    # ... 其他您已有的 URL 模式
+    path('llm/', include('llm_chatbot.urls')), # 新增 LLM 相關的 URL 前綴
 ]
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+# 僅在 DEBUG 模式下提供靜態和媒體文件服務 (如果您的 settings.py 中還沒有)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
