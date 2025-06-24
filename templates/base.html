@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}攝影器材租賃平台{% endblock %}</title>
-    
+
     {# Bootstrap CSS CDN #}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+
     {# Bootstrap Icons CSS CDN - 必備！ #}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -286,6 +286,50 @@
                 width: 100%; /* 按鈕佔滿可用寬度 */
             }
         }
+
+        /* --- 懸浮按鈕 (FAB) 的新樣式 --- */
+        .fab-button {
+            position: fixed; /* 固定在視窗中 */
+            bottom: 2rem; /* 距離底部 2rem */
+            right: 2rem; /* 距離右側 2rem */
+            width: 4rem; /* 寬度 */
+            height: 4rem; /* 高度 */
+            background-image: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%); /* 與主按鈕一致的漸變色 */
+            color: white; /* 文字顏色 */
+            border-radius: 50%; /* 圓形 */
+            display: flex; /* 使用 flexbox 居中圖標 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            font-size: 1.8rem; /* 圖標大小 */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* 陰影效果 */
+            transition: all 0.3s ease; /* 平滑過渡 */
+            z-index: 1000; /* 確保在其他內容之上 */
+            text-decoration: none; /* 移除下劃線 */
+        }
+
+        .fab-button:hover {
+            background-position: right center; /* 漸變移動效果 */
+            transform: translateY(-5px); /* 輕微上浮 */
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* 更明顯的陰影 */
+            color: white; /* 確保文字顏色不變 */
+        }
+
+        .fab-button:active {
+            transform: translateY(-2px); /* 點擊時輕微下沉 */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 小螢幕調整 FAB 位置，避免與底部導航或其他元素衝突 */
+        @media (max-width: 576px) {
+            .fab-button {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 3.5rem; /* 縮小一點 */
+                height: 3.5rem;
+                font-size: 1.5rem;
+            }
+        }
+
     </style>
     {# 在這裡可以添加其他頁面特有的 CSS #}
     {% block extra_css %}{% endblock %} {# 允許子模板添加額外的 CSS #}
@@ -323,7 +367,7 @@
                             <i class="bi bi-journal-text me-1"></i>我的租賃
                         </a>
                     </li>
-                    {# 新增租賃規章連結，放在我的租賃後面，關於我們之前 #}
+                    {# 新增租賃規章連結 #}
                     <li class="nav-item mx-2">
                         <a class="nav-link {% if request.resolver_match.url_name == 'rental_terms' %}active{% endif %}" href="{% url 'rental_terms' %}">
                             <i class="bi bi-file-text-fill me-1"></i>租賃規章
@@ -447,5 +491,12 @@
             }
         });
     </script>
+
+    {# --- 懸浮按鈕 (FAB) 的 HTML --- #}
+    <a href="{% url 'llm_chat' %}" class="fab-button" title="開啟 AI 聊天助理">
+        <i class="bi bi-chat-dots-fill"></i> {# 使用聊天圖標，您也可以嘗試 bi-robot #}
+    </a>
+    {# --- 懸浮按鈕 (FAB) 的 HTML 結束 --- #}
+
 </body>
 </html>

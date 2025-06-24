@@ -1,0 +1,340 @@
+{% extends 'base.html' %} {# 繼承您的基礎模板，保持網站一致性 #}
+
+{% block title %}AI 聊天助理{% endblock %}
+
+{% block extra_css %}
+{# llm_chat.html 特有的 CSS 樣式 #}
+<style>
+    /* 聊天容器整體樣式 */
+    .chat-card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px var(--shadow-medium);
+        overflow: hidden; /* 確保內容不會溢出圓角 */
+        display: flex;
+        flex-direction: column;
+        min-height: 600px; /* 最小高度，讓聊天框足夠大 */
+    }
+
+    .chat-header {
+        background-image: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 1.5rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-messages-container {
+        flex-grow: 1; /* 讓聊天訊息區域填充剩餘空間 */
+        overflow-y: auto; /* 啟用垂直滾動 */
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column; /* 訊息從上到下排列 */
+        gap: 10px; /* 訊息間距 */
+        background-color: var(--bg-light); /* 輕微的背景色 */
+    }
+
+    /* 聊天訊息泡泡樣式 */
+    .message-bubble {
+        padding: 12px 18px;
+        border-radius: 20px; /* 更圓潤的泡泡 */
+        max-width: 75%; /* 訊息最大寬度 */
+        line-height: 1.4;
+        font-size: 0.95rem;
+        word-wrap: break-word; /* 長單詞自動換行 */
+        white-space: pre-wrap; /* 保留換行符號 */
+        animation: fadeIn 0.3s ease-out; /* 新訊息入場動畫 */
+    }
+
+    .message-bubble.sent {
+        background-color: var(--secondary-color); /* 用戶發送的訊息顏色 */
+        color: white;
+        align-self: flex-end; /* 靠右對齊 */
+        margin-left: auto; /* 推到最右邊 */
+        border-bottom-right-radius: 5px; /* 右下角稍方正 */
+    }
+
+    .message-bubble.received {
+        background-color: var(--card-bg); /* AI 接收的訊息顏色 */
+        color: var(--text-dark);
+        align-self: flex-start; /* 靠左對齊 */
+        margin-right: auto; /* 推到最左邊 */
+        border: 1px solid var(--border-light); /* 增加邊框 */
+        border-bottom-left-radius: 5px; /* 左下角稍方正 */
+        box-shadow: 0 2px 5px var(--shadow-light); /* 輕微陰影 */
+    }
+
+    /* 錯誤訊息樣式 */
+    .message-bubble.error {
+        background-color: #f8d7da; /* 淺紅色背景 */
+        color: #721c24; /* 深紅色文字 */
+        border: 1px solid #f5c6cb;
+    }
+
+    /* 訊息作者和時間戳 */
+    .message-meta {
+        font-size: 0.75rem;
+        color: var(--text-light);
+        margin-top: 2px;
+    }
+    .message-bubble.sent + .message-meta {
+        text-align: right;
+    }
+
+    /* 聊天輸入區塊 */
+    .chat-input-area {
+        padding: 1.5rem;
+        border-top: 1px solid var(--border-light);
+        background-color: var(--card-bg);
+    }
+
+    .chat-input-area .input-group .form-control {
+        border-radius: 0.75rem 0 0 0.75rem; /* 左邊圓角 */
+        border-color: var(--border-light);
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        height: auto; /* 讓輸入框內容多時自動撐高 */
+    }
+
+    .chat-input-area .input-group .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
+    }
+
+    .chat-input-area .input-group .btn-primary {
+        background-image: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%);
+        border: none;
+        border-radius: 0 0.75rem 0.75rem 0; /* 右邊圓角 */
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        transition: all var(--transition-speed) var(--transition-timing-function);
+    }
+    .chat-input-area .input-group .btn-primary:hover {
+        background-position: right center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* AI 正在輸入指示器 */
+    .typing-indicator {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        margin-left: 10px;
+        color: var(--text-light);
+        font-size: 0.85rem;
+        animation: fadeIn 0.3s ease-out;
+    }
+    .typing-indicator span {
+        animation: typing-dots 1.5s infinite;
+        opacity: 0;
+        margin-left: 2px;
+    }
+    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing-dots {
+        0%, 80%, 100% { opacity: 0; }
+        40% { opacity: 1; }
+    }
+
+    /* 新的聊天按鈕 */
+    .btn-new-chat {
+        background-color: transparent;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+    .btn-new-chat:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        border-color: white;
+    }
+
+    /* 響應式調整 */
+    @media (max-width: 768px) {
+        .chat-card {
+            min-height: 500px;
+        }
+        .chat-header {
+            padding: 1rem;
+            font-size: 1.3rem;
+        }
+        .chat-messages-container {
+            padding: 1rem;
+        }
+        .message-bubble {
+            max-width: 90%;
+        }
+        .chat-input-area {
+            padding: 1rem;
+        }
+        .chat-input-area .input-group .form-control,
+        .chat-input-area .input-group .btn-primary {
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    {# 整個聊天介面包裝在一個卡片中 #}
+    <div class="chat-card animate__animated animate__fadeInUp">
+        {# 卡片頭部，包含標題和新聊天按鈕 #}
+        <div class="chat-header">
+            <span>
+                <i class="bi bi-robot me-2"></i>AI 相機租賃助理
+            </span>
+            <button id="new-chat-btn" class="btn btn-new-chat">
+                <i class="bi bi-arrow-clockwise me-1"></i>開始新對話
+            </button>
+        </div>
+
+        {# 聊天訊息顯示區域 #}
+        <div id="chat-messages-container" class="chat-messages-container">
+            {# 歡迎訊息，帶有動畫效果 #}
+            <div class="message-bubble received animate__animated animate__fadeIn">
+                你好！我是您的相機租賃AI助理，有什麼可以幫助您的嗎？
+            </div>
+            {# AI 正在輸入指示器 (初始隱藏) #}
+            <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                AI助理正在思考<span>.</span><span>.</span><span>.</span>
+            </div>
+        </div>
+
+        {# 聊天輸入表單 #}
+        <div class="chat-input-area">
+            <form id="chat-form" class="input-group">
+                {% csrf_token %} {# Django CSRF token for security #}
+                <input type="text" id="user-input" class="form-control" placeholder="輸入您的問題..." autocomplete="off">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-send-fill me-1"></i>發送
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{# JavaScript for chat functionality #}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatMessagesContainer = document.getElementById('chat-messages-container');
+        const typingIndicator = document.getElementById('typing-indicator');
+        const newChatBtn = document.getElementById('new-chat-btn');
+
+        // 輔助函數：滾動到聊天容器底部
+        function scrollToBottom() {
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        }
+
+        // 輔助函數：顯示訊息
+        function addMessage(text, type) {
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = `message-wrapper ${type}`;
+
+            const messageBubble = document.createElement('div');
+            messageBubble.className = `message-bubble ${type}`;
+            messageBubble.textContent = text; // 直接設置文本
+
+            const timestamp = new Date().toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+            const metaDiv = document.createElement('div');
+            metaDiv.className = 'message-meta';
+            metaDiv.textContent = `${type === 'sent' ? '您' : 'AI助理'} · ${timestamp}`;
+
+            messageWrapper.appendChild(messageBubble);
+            messageWrapper.appendChild(metaDiv);
+            chatMessagesContainer.appendChild(messageWrapper);
+            scrollToBottom(); // 每次添加訊息後滾動到底部
+        }
+
+        // 表單提交事件處理
+        chatForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // 阻止表單預設提交行為
+
+            const userMessage = userInput.value.trim();
+            if (userMessage === '') {
+                // 如果輸入為空，可以給出一些視覺反饋，例如輸入框閃爍
+                userInput.classList.add('is-invalid');
+                setTimeout(() => userInput.classList.remove('is-invalid'), 1000);
+                return;
+            }
+
+            // 清除之前的輸入框驗證狀態
+            userInput.classList.remove('is-invalid');
+
+            // 顯示用戶訊息
+            addMessage(userMessage, 'sent');
+            userInput.value = ''; // 清空輸入框
+            userInput.disabled = true; // 發送中禁用輸入框
+            chatForm.querySelector('button[type="submit"]').disabled = true; // 禁用發送按鈕
+
+            // 顯示 AI 正在輸入指示器
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
+
+            try {
+                // 發送請求到後端 LLM API
+                const response = await fetch('/llm/api/llm-query/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const llmResponse = data.response || '抱歉，未能獲得回覆。'; // 假設後端返回的 JSON 中有 'response' 鍵
+
+                // 顯示 LLM 回覆
+                addMessage(llmResponse, 'received');
+
+            } catch (error) {
+                console.error('API 請求錯誤:', error);
+                addMessage(`抱歉，AI助理目前遇到問題，請稍後再試。 (${error.message})`, 'error');
+            } finally {
+                // 無論成功或失敗，都隱藏指示器，並重新啟用輸入框和按鈕
+                typingIndicator.style.display = 'none';
+                userInput.disabled = false;
+                chatForm.querySelector('button[type="submit"]').disabled = false;
+                userInput.focus(); // 讓輸入框重新獲得焦點，方便用戶繼續輸入
+            }
+        });
+
+        // 開始新對話按鈕事件處理
+        newChatBtn.addEventListener('click', function() {
+            if (confirm('您確定要開始一個新對話嗎？所有之前的訊息將會被清除。')) {
+                chatMessagesContainer.innerHTML = `
+                    <div class="message-bubble received animate__animated animate__fadeIn">
+                        你好！我是您的相機租賃AI助理，有什麼可以幫助您的嗎？
+                    </div>
+                `;
+                userInput.value = '';
+                userInput.disabled = false;
+                chatForm.querySelector('button[type="submit"]').disabled = false;
+                typingIndicator.style.display = 'none';
+                scrollToBottom();
+            }
+        });
+
+        // 初始載入時滾動到底部
+        scrollToBottom();
+    });
+</script>
+{% endblock %}
